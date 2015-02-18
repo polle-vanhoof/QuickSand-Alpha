@@ -1,3 +1,7 @@
+# eclipse files
+bin
+.classpath
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
