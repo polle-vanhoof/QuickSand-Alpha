@@ -50,7 +50,10 @@ public class TCPSender implements Runnable{
 				    out.flush();
 				    bytesSent++;
 				    if(bytesSent % 30000 == 0){
-				    	double percentage = Math.round(100.0*bytesSent/fileLength);
+				    	if(out.checkError()){
+				    		break;
+				    	}
+				    	double percentage = Math.round(10000.0*bytesSent/fileLength)/100.0;
 				    	System.out.println("transferred: " + percentage + "%");
 				    }
 				}

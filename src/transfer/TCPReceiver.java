@@ -12,6 +12,7 @@ public class TCPReceiver implements Runnable {
 
 	private static TCPReceiver instance = null;
 	ServerSocket welcomeSocket = null;
+	Socket socket = null;
 
 	protected TCPReceiver() {
 		try {
@@ -28,13 +29,14 @@ public class TCPReceiver implements Runnable {
 		return instance;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		while(true){
 			try{
 				System.out.println("waiting for client connection");
-				Socket socket = welcomeSocket.accept();
-				DataInputStream in = new DataInputStream(socket.getInputStream());
+				this.socket = welcomeSocket.accept();
+				DataInputStream in = new DataInputStream(this.socket.getInputStream());
 				int size = Integer.parseInt(in.readLine().split(": ")[1]);
 				String fileName = in.readLine().split(": ")[1].trim();
 				byte[] item = new byte[size];
@@ -55,6 +57,7 @@ public class TCPReceiver implements Runnable {
 
 	public void kill() {
 		try {
+			this.socket.close();
 			welcomeSocket.close();
 		} catch (IOException e) {
 			// do nothing?

@@ -32,6 +32,7 @@ public class TrayIconControl {
 		instantiateTray();
 		LinkedList<String> paths = new LinkedList<String>();
 		paths.add("C:\\Users\\polle\\Documents\\desktopimages\\zelda.jpg");
+		paths.add("C:\\Users\\polle\\Vuze\\Saw 7 2010 DvDRiP Xvid\\Saw 7 2010 DvDRiP Xvid.avi");
 		paths.add("C:\\Users\\polle\\Documents\\desktopimages\\zero.jpg");
 		tcp.sendFiles(paths);
 	}
